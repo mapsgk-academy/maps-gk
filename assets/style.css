@@ -1,0 +1,25 @@
+:root{--bg:#f6f8fc;--card:#ffffff;--text:#0f1f3d;--muted:#5b6b88;--brand:#0b3a82;--accent:#d99a1b;--line:#e2e8f3}
+@media (prefers-color-scheme:dark){:root{--bg:#0b1426;--card:#121e36;--text:#eaf0fb;--muted:#9fb0cf;--brand:#7fb0ff;--accent:#f0b84a;--line:#22324f}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Hind Siliguri","Noto Sans Bengali",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;padding-top:env(safe-area-inset-top)}
+.top{display:flex;justify-content:space-between;align-items:center;max-width:1080px;margin:0 auto;padding:14px 18px}
+.brand{font-weight:700;font-size:1.25rem;color:var(--brand);text-decoration:none}
+#langBtn{border:1px solid var(--line);background:var(--card);color:var(--text);padding:8px 16px;border-radius:999px;font:inherit;font-size:.95rem;cursor:pointer}
+main{max-width:1080px;margin:0 auto;padding:0 18px 40px}
+.hero{padding:36px 0 28px;text-align:center}
+.tag{display:inline-block;background:var(--card);border:1px solid var(--line);color:var(--accent);padding:4px 14px;border-radius:999px;font-size:.9rem;margin:0 0 14px}
+h1{font-size:clamp(1.9rem,6vw,3.2rem);line-height:1.25;margin:0 0 12px;color:var(--brand)}
+.lead{max-width:640px;margin:0 auto 22px;color:var(--muted);font-size:1.05rem}
+.search input{width:100%;max-width:520px;padding:14px 18px;border-radius:14px;border:1px solid var(--line);background:var(--card);color:var(--text);font:inherit}
+h2{font-size:1.4rem;margin:30px 0 14px}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 2px 10px rgba(11,58,130,.06)}
+.card .ic{font-size:1.8rem}
+.card h3{margin:6px 0 4px;font-size:1.1rem}
+.card p{margin:0 0 10px;color:var(--muted);font-size:.95rem}
+.badge{display:inline-block;font-size:.8rem;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:1px 10px}
+.promise{margin-top:34px;background:var(--card);border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:14px;padding:18px}
+.promise h2{margin:0 0 6px;font-size:1.2rem}
+.promise p{margin:0;color:var(--muted)}
+footer{text-align:center;color:var(--muted);padding:22px 18px calc(22px + env(safe-area-inset-bottom));font-size:.9rem}
