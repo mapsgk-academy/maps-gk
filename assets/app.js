@@ -7,8 +7,12 @@ var T = {
     search: "দেশ, রাজধানী বা স্থান খুঁজুন (শীঘ্রই আসছে)",
     topics: "শেখার বিভাগ",
     soon: "শীঘ্রই আসছে",
+    open: "খুলুন →",
     promiseTitle: "আমাদের তথ্য-নীতি",
-    promise: "এখনো কোনো ভৌগোলিক তথ্য প্রকাশ করা হয়নি। প্রতিটি তথ্য যাচাই করে প্রকাশ করা হবে এবং সাথে উৎস ও সর্বশেষ যাচাইয়ের তারিখ থাকবে।",
+    promise: "প্রতিটি তথ্য যাচাই করে প্রকাশ করা হবে এবং সাথে উৎস ও সর্বশেষ যাচাইয়ের তারিখ থাকবে। যে বিভাগগুলো এখনো তৈরি হয়নি সেখানে কোনো তথ্য দেওয়া হয়নি।",
+    sourcesLink: "উৎস ও নীতিমালা দেখুন →",
+    navMap: "বিশ্ব মানচিত্র",
+    navSources: "উৎস ও নীতিমালা",
     footer: "© MAPS GK · একটি শিক্ষামূলক প্রকল্প",
     switchTo: "English"
   },
@@ -20,15 +24,19 @@ var T = {
     search: "Search a country, capital or place (coming soon)",
     topics: "Learning sections",
     soon: "Coming soon",
+    open: "Open →",
     promiseTitle: "Our data policy",
-    promise: "No geographic data has been published yet. Every fact will be verified before publishing, with its source and last verified date shown alongside.",
+    promise: "Every fact will be verified before publishing, with its source and last verified date shown alongside. Sections that are not built yet contain no data.",
+    sourcesLink: "See Sources & Policy →",
+    navMap: "World Map",
+    navSources: "Sources & Policy",
     footer: "© MAPS GK · An educational project",
     switchTo: "বাংলা"
   }
 };
 
 var TOPICS = [
-  { i: "🌍", bn: ["বিশ্ব মানচিত্র", "ইন্টারঅ্যাক্টিভ মানচিত্রে দেশ চিনুন"], en: ["World Map", "Explore countries on an interactive map"] },
+  { i: "🌍", href: "map.html", bn: ["বিশ্ব মানচিত্র", "ইন্টারঅ্যাক্টিভ মানচিত্রে দেশ চিনুন"], en: ["World Map", "Explore countries on an interactive map"] },
   { i: "🇧🇩", bn: ["বাংলাদেশের মানচিত্র", "বিভাগ ও জেলা মানচিত্রে দেখুন"], en: ["Bangladesh Map", "See divisions and districts on the map"] },
   { i: "🧭", bn: ["সাত মহাদেশ", "প্রতিটি মহাদেশ আলাদাভাবে"], en: ["Seven Continents", "Each continent in detail"] },
   { i: "🏛️", bn: ["দেশ ও রাজধানী", "সার্চযোগ্য তালিকা"], en: ["Countries & Capitals", "A searchable list"] },
@@ -62,8 +70,15 @@ function render() {
   grid.innerHTML = "";
   for (var k = 0; k < TOPICS.length; k++) {
     var item = TOPICS[k];
-    var card = document.createElement("div");
-    card.className = "card";
+    var card;
+    if (item.href) {
+      card = document.createElement("a");
+      card.href = item.href;
+      card.className = "card";
+    } else {
+      card = document.createElement("div");
+      card.className = "card";
+    }
 
     var ic = document.createElement("div");
     ic.className = "ic";
@@ -76,8 +91,8 @@ function render() {
     p.textContent = item[lang][1];
 
     var b = document.createElement("span");
-    b.className = "badge";
-    b.textContent = t.soon;
+    b.className = item.href ? "badge on" : "badge";
+    b.textContent = item.href ? t.open : t.soon;
 
     card.appendChild(ic);
     card.appendChild(h3);
