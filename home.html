@@ -8,10 +8,30 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
+  <style>
+    .top { flex-wrap: wrap; gap: 8px; }
+    .nav { display: flex; gap: 16px; font-size: .95rem; }
+    .nav a { color: var(--text); text-decoration: none; }
+    .nav a:hover { color: var(--accent); }
+    a.card { display: block; color: inherit; text-decoration: none; transition: transform .2s ease, box-shadow .2s ease; }
+    a.card:hover, a.card:active { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(11,58,130,.14); }
+    .badge.on { color: var(--brand); border-color: var(--brand); }
+    .promise a { color: var(--brand); display: inline-block; margin-top: 8px; font-weight: 600; text-decoration: none; }
+    .hero, .card { animation: rise .5s ease both; }
+    @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) {
+      .hero, .card { animation: none; }
+      a.card { transition: none; }
+    }
+  </style>
 </head>
 <body>
   <header class="top">
     <a class="brand" href="home.html">🌍 MAPS GK</a>
+    <nav class="nav">
+      <a href="map.html" data-i18n="navMap"></a>
+      <a href="sources.html" data-i18n="navSources"></a>
+    </nav>
     <button id="langBtn" type="button">English</button>
   </header>
 
@@ -33,6 +53,7 @@
     <section class="promise">
       <h2 data-i18n="promiseTitle"></h2>
       <p data-i18n="promise"></p>
+      <a href="sources.html" data-i18n="sourcesLink"></a>
     </section>
   </main>
 
