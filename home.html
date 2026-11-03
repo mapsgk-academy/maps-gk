@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>MAPS GK</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="home.html">🌍 MAPS GK</a>
+    <button id="langBtn" type="button">English</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="tag" data-i18n="tag"></p>
+      <h1 data-i18n="h1"></h1>
+      <p class="lead" data-i18n="lead"></p>
+      <div class="search">
+        <input id="searchBox" type="search" disabled>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-i18n="topics"></h2>
+      <div class="grid" id="grid"></div>
+    </section>
+
+    <section class="promise">
+      <h2 data-i18n="promiseTitle"></h2>
+      <p data-i18n="promise"></p>
+    </section>
+  </main>
+
+  <footer data-i18n="footer"></footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
