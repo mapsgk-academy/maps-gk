@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>বিশ্ব মানচিত্র | MAPS GK</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    :root { --sea: #dce9fb; --land: #b9c9e6; --edge: #ffffff; }
+    @media (prefers-color-scheme: dark) {
+      :root { --sea: #0e2342; --land: #2f4a78; --edge: #0b1426; }
+    }
+    body.bn .en { display: none; }
+    body.en .bn { display: none; }
+    h1.pt { font-size: clamp(1.5rem, 5vw, 2.2rem); text-align: left; margin: 14px 0 6px; }
+    .mapbox { position: relative; background: var(--sea); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; margin-top: 12px; }
+    #map { width: 100%; height: auto; display: block; cursor: grab; }
+    .country { fill: var(--land); stroke: var(--edge); cursor: pointer; }
+    .country:hover { fill: var(--accent); opacity: .75; }
+    .country.sel { fill: var(--accent); opacity: 1; }
+    .sphere { fill: var(--sea); }
+    .zbtns { position: absolute; top: 10px; right: 10px; display: flex; flex-direction: column; gap: 6px; }
+    .zbtns button { width: 40px; height: 40px; border-radius: 12px; border: 1px solid var(--line); background: var(--card); color: var(--text); font-size: 1.2rem; cursor: pointer; }
+    #status { position: absolute; left: 14px; bottom: 10px; color: var(--muted); font-size: .9rem; }
+    #info { margin-top: 14px; min-height: 110px; }
+    #info h3 { margin: 0 0 8px; font-size: 1.3rem; color: var(--brand); }
+    #info .row { display: flex; gap: 10px; padding: 6px 0; border-top: 1px solid var(--line); font-size: .95rem; }
+    #info .k { color: var(--muted); min-width: 140px; }
+    #info .hint { margin: 0; color: var(--muted); }
+    .src { margin-top: 14px; font-size: .88rem; color: var(--muted); }
+    .src a { color: var(--brand); }
+    .notes { margin-top: 14px; }
+    .notes li { margin-bottom: 6px; color: var(--muted); font-size: .92rem; }
+  </style>
+</head>
+<body class="bn">
+  <header class="top">
+    <a class="brand" href="home.html">🌍 MAPS GK</a>
+    <button id="langBtn" type="button">English</button>
+  </header>
+
+  <main>
+    <h1 class="pt"><span class="bn">বিশ্ব মানচিত্র</span><span class="en">World Map</span></h1>
+    <p class="lead" style="margin:0">
+      <span class="bn">কোনো দেশে ট্যাপ বা ক্লিক করুন। দুই আঙুলে জুম করুন, এক আঙুলে মানচিত্র সরান।</span>
+      <span class="en">Tap or click a country. Pinch to zoom and drag to move the map.</span>
+    </p>
+
+    <div class="mapbox">
+      <svg id="map" role="img" aria-label="World map"></svg>
+      <div class="zbtns">
+        <button id="zin" type="button" aria-label="Zoom in">+</button>
+        <button id="zout" type="button" aria-label="Zoom out">−</button>
+        <button id="zreset" type="button" aria-label="Reset">⟲</button>
+      </div>
+      <div id="status"></div>
+    </div>
+
+    <div id="info" class="card"></div>
+
+    <p class="src">
+      <span class="bn">মানচিত্রের ডেটা: <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth</a> ১:১১০ মিলিয়ন, দেশ (Admin-0), পাবলিক ডোমেইন। সংগ্রহের তারিখ: ৪ নভেম্বর ২০২৬। Made with Natural Earth।</span>
+      <span class="en">Map data: <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth</a> 1:110m, Admin-0 countries, public domain. Accessed: 4 November 2026. Made with Natural Earth.</span>
+    </p>
+
+    <ul class="notes">
+      <li class="bn">সীমানা Natural Earth-এর "de facto" (বাস্তব নিয়ন্ত্রণ) নীতিতে আঁকা। বিতর্কিত অঞ্চলে কোন সংস্থা কী বলে তা আলাদা নোটে যোগ করা হবে।</li>
+      <li class="en">Borders follow Natural Earth's "de facto" (actual control) policy. Notes on what different organizations say about disputed areas will be added separately.</li>
+      <li class="bn">মানচিত্রটি সরলীকৃত। খুব ছোট কিছু দেশ এই স্কেলে আঁকা হয় না, সেগুলো পরের ধাপে যোগ হবে।</li>
+      <li class="en">This map is simplified. Some very small countries are not drawn at this scale and will be added in a later step.</li>
+      <li class="bn">রাজধানী ও বাংলা নাম যাচাই করে পরের ধাপে যোগ করা হবে।</li>
+      <li class="en">Capitals and Bengali names will be added after verification in the next step.</li>
+    </ul>
+  </main>
+
+  <footer>
+    <a href="home.html" style="color:inherit"><span class="bn">← হোমপেজ</span><span class="en">← Home</span></a>
+    &nbsp;·&nbsp;
+    <a href="sources.html" style="color:inherit"><span class="bn">উৎস ও নীতিমালা</span><span class="en">Sources &amp; Policy</span></a>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+  <script>
+    var lang = "bn";
+    try {
+      var saved = localStorage.getItem("mapsgk-lang");
+      if (saved === "bn" || saved === "en") { lang = saved; }
+    } catch (e) {}
+
+    var L = {
+      bn: { hint: "কোনো দেশে ট্যাপ বা ক্লিক করুন।", formal: "পূর্ণ নাম (ইংরেজি)", continent: "মহাদেশ (ডেটা ফাইলের শ্রেণি)", sovereign: "সার্বভৌম রাষ্ট্র", type: "ধরন", none: "তথ্য নেই", loading: "মানচিত্র লোড হচ্ছে...", error: "মানচিত্রের ফাইল পাওয়া যায়নি। ne_110m_admin_0_countries.geojson ফাইলটি রিপোজিটরিতে আছে কি না দেখুন।" },
+      en: { hint: "Tap or click a country.", formal: "Formal name", continent: "Continent (data file category)", sovereign: "Sovereign state", type: "Type", none: "No data", loading: "Loading map...", error: "Map file not found. Check that ne_110m_admin_0_countries.geojson is in the repository." }
+    };
+    function t(k) { return L[lang][k]; }
+
+    var current = null;
+
+    function val(v) {
+      if (v === undefined || v === null || v === "" || v === "-99") { return t("none"); }
+      return String(v);
+    }
+
+    function showInfo(p) {
+      var box = document.getElementById("info");
+      box.innerHTML = "";
+      if (!p) {
+        var h = document.createElement("p");
+        h.className = "hint";
+        h.textContent = t("hint");
+        box.appendChild(h);
+        return;
+      }
+      var title = document.createElement("h3");
+      title.textContent = val(p.NAME);
+      box.appendChild(title);
+      var rows = [
+        ["formal", p.FORMAL_EN],
+        ["continent", p.CONTINENT],
+        ["sovereign", p.SOVEREIGNT],
+        ["type", p.TYPE]
+      ];
+      for (var i = 0; i < rows.length; i++) {
+        var row = document.createElement("div");
+        row.className = "row";
+        var a = document.createElement("span");
+        a.className = "k";
+        a.textContent = t(rows[i][0]);
+        var b = document.createElement("span");
+        b.textContent = val(rows[i][1]);
+        row.appendChild(a);
+        row.appendChild(b);
+        box.appendChild(row);
+      }
+    }
+
+    function apply() {
+      document.body.className = lang;
+      document.documentElement.lang = lang;
+      document.getElementById("langBtn").textContent = (lang === "bn") ? "English" : "বাংলা";
+      document.title = (lang === "bn") ? "বিশ্ব মানচিত্র | MAPS GK" : "World Map | MAPS GK";
+      showInfo(current);
+    }
+
+    document.getElementById("langBtn").addEventListener("click", function () {
+      lang = (lang === "bn") ? "en" : "bn";
+      try { localStorage.setItem("mapsgk-lang", lang); } catch (e) {}
+      apply();
+    });
+
+    var W = 960, H = 500;
+    var svg = d3.select("#map").attr("viewBox", "0 0 " + W + " " + H);
+    var g = svg.append("g");
+    var proj = d3.geoNaturalEarth1().fitSize([W, H], { type: "Sphere" });
+    var pathGen = d3.geoPath(proj);
+    g.append("path").datum({ type: "Sphere" }).attr("class", "sphere").attr("d", pathGen);
+
+    var zoom = d3.zoom()
+      .scaleExtent([1, 10])
+      .extent([[0, 0], [W, H]])
+      .translateExtent([[0, 0], [W, H]])
+      .on("zoom", function (event) {
+        g.attr("transform", event.transform);
+        g.selectAll("path.country").attr("stroke-width", 0.5 / event.transform.k);
+      });
+    svg.call(zoom);
+
+    document.getElementById("zin").addEventListener("click", function () {
+      svg.transition().duration(250).call(zoom.scaleBy, 1.6);
+    });
+    document.getElementById("zout").addEventListener("click", function () {
+      svg.transition().duration(250).call(zoom.scaleBy, 1 / 1.6);
+    });
+    document.getElementById("zreset").addEventListener("click", function () {
+      svg.transition().duration(300).call(zoom.transform, d3.zoomIdentity);
+    });
+
+    var status = document.getElementById("status");
+    status.textContent = t("loading");
+
+    d3.json("ne_110m_admin_0_countries.geojson").then(function (data) {
+      status.textContent = "";
+      g.selectAll("path.country")
+        .data(data.features)
+        .enter()
+        .append("path")
+        .attr("class", "country")
+        .attr("stroke-width", 0.5)
+        .attr("d", pathGen)
+        .on("click", function (event, d) {
+          g.selectAll("path.country").classed("sel", false);
+          d3.select(this).classed("sel", true);
+          current = d.properties;
+          showInfo(current);
+        })
+        .append("title")
+        .text(function (d) { return d.properties.NAME; });
+    }).catch(function () {
+      status.textContent = t("error");
+    });
+
+    apply();
+  </script>
+</body>
+</html>
