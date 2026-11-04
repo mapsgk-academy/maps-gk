@@ -39,7 +39,7 @@ var TOPICS = [
   { i: "🌍", href: "map.html", bn: ["বিশ্ব মানচিত্র", "ইন্টারঅ্যাক্টিভ মানচিত্রে দেশ চিনুন"], en: ["World Map", "Explore countries on an interactive map"] },
   { i: "🇧🇩", bn: ["বাংলাদেশের মানচিত্র", "বিভাগ ও জেলা মানচিত্রে দেখুন"], en: ["Bangladesh Map", "See divisions and districts on the map"] },
   { i: "🧭", bn: ["সাত মহাদেশ", "প্রতিটি মহাদেশ আলাদাভাবে"], en: ["Seven Continents", "Each continent in detail"] },
-  { i: "🏛️", bn: ["দেশ ও রাজধানী", "সার্চযোগ্য তালিকা"], en: ["Countries & Capitals", "A searchable list"] },
+  { i: "🏛️", href: "countries.html", bn: ["দেশ ও রাজধানী", "সার্চযোগ্য তালিকা (দক্ষিণ এশিয়া দিয়ে শুরু)"], en: ["Countries & Capitals", "A searchable list (starting with South Asia)"] },
   { i: "🌊", bn: ["নদী, সাগর ও মহাসাগর", "জলভাগের পরিচয়"], en: ["Rivers, Seas & Oceans", "Know the water bodies"] },
   { i: "⚓", bn: ["প্রণালি ও গুরুত্বপূর্ণ স্থান", "সমুদ্রপথের গুরুত্বপূর্ণ স্থান"], en: ["Straits & Key Places", "Important places on sea routes"] },
   { i: "⛰️", bn: ["পর্বতমালা ও মরুভূমি", "ভূমিরূপের পরিচয়"], en: ["Mountains & Deserts", "Landforms explained"] },
